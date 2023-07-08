@@ -35,6 +35,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article= Article.find(params[:id])
+    @article.destroy
+
+    # redirect to the root path with status coed 303 See Other
+    redirect_to root_path, status: :see_other
+  end
+
   private
     def article_params
       params.require(:article).permit(:title, :body)
